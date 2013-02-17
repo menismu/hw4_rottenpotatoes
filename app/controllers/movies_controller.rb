@@ -64,4 +64,13 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def director
+    @movie = Movie.find(params[:id])
+    if @movie.director.empty?
+      redirect_to movies_path
+    else
+      @movies = Movie.where("director = ?", @movie.director)
+    end
+  end
+
 end
